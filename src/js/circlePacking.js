@@ -1,6 +1,6 @@
 var createChart = function() {
   var svg = d3.select("#chart"),
-    margin = 20,
+    margin = 10,
     diameter = +svg.attr("width"),
     g = svg
       .append("g")
@@ -12,13 +12,13 @@ var createChart = function() {
   var color = d3
     .scaleLinear()
     .domain([-1, 5])
-    .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
+    .range(["hsl(195,80%,80%)", "hsl(228,30%,40%)"])
     .interpolate(d3.interpolateHcl);
 
   var pack = d3
     .pack()
     .size([diameter - margin, diameter - margin])
-    .padding(2);
+    .padding(3);
 
   d3.json("./src/flare.json", function(error, root) {
     if (error) throw error;
