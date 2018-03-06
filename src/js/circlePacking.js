@@ -125,11 +125,10 @@ var createChart = function() {
 };
 
 var resizeSVG = function() {
-  var width = window.innerWidth;
+  var height = window.innerHeight;
   var svg = document.getElementById("chart");
-  var newWidth = 0.8 * width;
-  svg.setAttribute("width", "" + newWidth);
-  svg.setAttribute("height", "" + newWidth);
+  svg.setAttribute("width", "" + height);
+  svg.setAttribute("height", "" + height);
 };
 
 window.onload = function() {
