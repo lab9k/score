@@ -1,5 +1,4 @@
 var createChart = function() {
-  console.log("creating svg");
   var svg = d3.select("#chart"),
     margin = 20,
     diameter = +svg.attr("width"),
@@ -128,7 +127,7 @@ var createChart = function() {
 var resizeSVG = function() {
   var width = window.innerWidth;
   var svg = document.getElementById("chart");
-  var newWidth = 0.6 * width;
+  var newWidth = 0.8 * width;
   svg.setAttribute("width", "" + newWidth);
   svg.setAttribute("height", "" + newWidth);
 };
@@ -138,6 +137,13 @@ window.onload = function() {
   createChart();
 };
 
-window.onresize = function() {
-  console.log("resizing.");
-};
+// window.onresize = function() {
+//   console.log("resizing.");
+//   var svg_cont = document.getElementById("svg-cont");
+//   svg_cont.removeChild(document.getElementById("chart"));
+//   var newElem = document.createElement("svg");
+//   newElem.setAttribute("id", "chart");
+//   svg_cont.appendChild(newElem);
+//   resizeSVG();
+//   createChart();
+// };
