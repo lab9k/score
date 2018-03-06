@@ -9,6 +9,6 @@ gulp.task("build", function() {
     .src("./index.html")
     .pipe(useref())
     .pipe(gulpif("*.css", minifyCss()))
-    .pipe(gulpif("*.js"), uglify())
+    .pipe(gulpif("*.js", uglify()))
     .pipe(gulp.dest("./docs/"));
 });
