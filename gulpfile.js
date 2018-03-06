@@ -4,7 +4,11 @@ var gulpif = require("gulp-if");
 var minifyCss = require("gulp-clean-css");
 var uglify = require("gulp-uglify");
 
-gulp.task("build", function() {
+gulp.task("assets", function() {
+  return gulp.src("./src/flare.json").pipe(gulp.dest("./docs/src/"));
+});
+
+gulp.task("build", ["assets"], function() {
   return gulp
     .src("./index.html")
     .pipe(useref())
