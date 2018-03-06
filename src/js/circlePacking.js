@@ -1,5 +1,6 @@
-var createSvg = function() {
-  var svg = d3.select("svg"),
+var createChart = function() {
+  console.log("creating svg");
+  var svg = d3.select("#chart"),
     margin = 20,
     diameter = +svg.attr("width"),
     g = svg
@@ -20,7 +21,7 @@ var createSvg = function() {
     .size([diameter - margin, diameter - margin])
     .padding(2);
 
-  d3.json("flare.json", function(error, root) {
+  d3.json("./src/flare.json", function(error, root) {
     if (error) throw error;
 
     root = d3
@@ -124,6 +125,19 @@ var createSvg = function() {
   });
 };
 
-document.onload = function() {
-  createSvg();
+var resizeSVG = function() {
+  var width = window.innerWidth;
+  var svg = document.getElementById("chart");
+  var newWidth = 0.6 * width;
+  svg.setAttribute("width", "" + newWidth);
+  svg.setAttribute("height", "" + newWidth);
+};
+
+window.onload = function() {
+  resizeSVG();
+  createChart();
+};
+
+window.onresize = function() {
+  console.log("resizing.");
 };
