@@ -107,7 +107,7 @@ var createChart = function() {
         if (focus !== d) zoom(d), d3.event.stopPropagation();
       });
 
-    var text = g
+    /*var text =*/ g
       .selectAll("text")
       .data(nodes)
       .enter()
@@ -132,13 +132,13 @@ var createChart = function() {
     zoomTo([root.x, root.y, root.r * 2 + margin]);
 
     function zoom(d) {
-      var focus0 = focus;
+      //var focus0 = focus;
       focus = d;
 
       var transition = d3
         .transition()
         .duration(d3.event.altKey ? 7500 : 750)
-        .tween("zoom", function(d) {
+        .tween("zoom", function(/*d*/) {
           var i = d3.interpolateZoom(view, [
             focus.x,
             focus.y,
