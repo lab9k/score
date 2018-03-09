@@ -9,10 +9,12 @@ gulp.task("assets", function() {
 });
 
 gulp.task("build", ["assets"], function() {
-  return gulp
-    .src("./index.html")
-    .pipe(useref())
-    .pipe(gulpif("*.css", minifyCss()))
-    .pipe(gulpif("*.js", uglify()))
-    .pipe(gulp.dest("./docs/"));
+  return (
+    gulp
+      .src("./index.html")
+      .pipe(useref())
+      .pipe(gulpif("*.css", minifyCss()))
+      //.pipe(gulpif("*.js", uglify()))
+      .pipe(gulp.dest("./docs/"))
+  );
 });

@@ -1,28 +1,28 @@
 var createChart = function() {
-  var svg = d3.select("#chart"),
-    margin = 20,
-    diameter = +svg.attr("width"),
-    g = svg
-      .append("g")
-      .attr(
-        "transform",
-        "translate(" + diameter / 2 + "," + diameter / 2 + ")"
-      );
+  var dataService = new SpreadsheetDataService();
+  dataService.fetch(function(data) {
+    var svg = d3.select("#chart"),
+      margin = 20,
+      diameter = +svg.attr("width"),
+      g = svg
+        .append("g")
+        .attr(
+          "transform",
+          "translate(" + diameter / 2 + "," + diameter / 2 + ")"
+        );
+    var color = d3
+      .scaleLinear()
+      .domain([-1, 5])
+      .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
+      .interpolate(d3.interpolateHcl);
+    var pack = d3
+      .pack()
+      .size([diameter - margin, diameter - margin])
+      .padding(2);
 
-  var color = d3
-    .scaleLinear()
-    .domain([-1, 5])
-    .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
-    .interpolate(d3.interpolateHcl);
-
-  var pack = d3
-    .pack()
-    .size([diameter - margin, diameter - margin])
-    .padding(2);
-
-  d3.json("./src/flare.json", function(error, root) {
-    if (error) throw error;
-
+    //d3.json(data, function(error, root) {
+    //if (error) throw error;
+    var root = data;
     root = d3
       .hierarchy(root)
       .sum(function(d) {
