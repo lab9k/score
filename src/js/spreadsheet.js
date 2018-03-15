@@ -70,7 +70,6 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
               children: [rowObj],
               kind: "KEYWORD"
             });
-            parsed_json.children.push(themeObj);
           } else {
             kwObj.children.push(rowObj);
           }
