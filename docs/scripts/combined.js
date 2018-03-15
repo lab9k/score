@@ -59,7 +59,7 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
           return el.name === themeValue;
         });
         if (!themeObj) {
-          themeObj = { name: themeValue, children: [] };
+          themeObj = { name: themeValue, children: [], kind: "THEME" };
           themeObj.children.push({ name: kwValue, children: [rowObj] });
           parsed_json.children.push(themeObj);
         } else {
@@ -67,7 +67,11 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
             return el.name === kwValue;
           });
           if (!kwObj) {
-            themeObj.children.push({ name: kwValue, children: [rowObj] });
+            themeObj.children.push({
+              name: kwValue,
+              children: [rowObj],
+              kind: "KEYWORD"
+            });
             parsed_json.children.push(themeObj);
           } else {
             kwObj.children.push(rowObj);
