@@ -75,6 +75,7 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
         }
       });
     }
+    console.log("Parsed JSON: ", parsed_json);
     cb(parsed_json);
   });
 };
