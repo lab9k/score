@@ -65,8 +65,8 @@ var createChart = function() {
       .style("display", function(d) {
         return d.parent === root ? "inline" : "none";
       })
-      .attr("leaf", function(d) {
-        return d.data.leaf ? true : false;
+      .attr("fill", function(d) {
+        return d.data.leaf ? "red" : "inherit";
       })
       .text(function(d) {
         return d.data.name;
