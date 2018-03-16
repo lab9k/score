@@ -62,7 +62,6 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
         }
       });
     }
-    console.log("Parsed JSON: ", parsed_json);
     cb(parsed_json);
   });
 };
@@ -73,7 +72,6 @@ var fetchJson = function(url, cb) {
     .then(status)
     .then(data => {
       data.json().then(d => {
-        console.log(d);
         cb(d);
       });
     })

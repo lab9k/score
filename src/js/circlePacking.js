@@ -138,14 +138,3 @@ window.onload = function() {
   resizeSVG();
   createChart();
 };
-
-// window.onresize = function() {
-//   console.log("resizing.");
-//   var svg_cont = document.getElementById("svg-cont");
-//   svg_cont.removeChild(document.getElementById("chart"));
-//   var newElem = document.createElement("svg");
-//   newElem.setAttribute("id", "chart");
-//   svg_cont.appendChild(newElem);
-//   resizeSVG();
-//   createChart();
-// };
