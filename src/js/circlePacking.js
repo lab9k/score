@@ -48,15 +48,7 @@ var createChart = function() {
       })
       .style("fill", function(d) {
         if (d.data.leaf) {
-          if (d.data.city == "Amsterdam"){
-            return "pink";
-          }
-          if (d.data.city == "Gent"){
-            return "blue";
-          }
-          if (d.data.city == "Gothenburg"){
-            return "lime";
-          }
+          return dataService.cityColors[d.data.city]
         }else
         return d.children ? color(d.depth) : null;
       })
