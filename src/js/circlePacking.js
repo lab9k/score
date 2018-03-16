@@ -139,11 +139,21 @@ var createChart = function(options) {
         return d.r * k;
       });
     }
-    createCheckboxes(dataService);
+    function colorCallback(options) {
+      var circle = g
+        .selectAll("circle")
+        .data(nodes)
+        .style("fill", function(d) {
+          if (d.data.leaf && options && options[d.data.city]) {
+            return dataService.cityColors[d.data.city];
+          } else return d.children ? color(d.depth) : null;
+        });
+    }
+    createCheckboxes(dataService, colorCallback);
   });
 };
 
-var createCheckboxes = function(dataService) {
+var createCheckboxes = function(dataService, cb) {
   var list = document.getElementById("checkboxes");
   if (list.firstChild) {
     return;
@@ -165,7 +175,7 @@ var createCheckboxes = function(dataService) {
       checkedCityNodes.forEach(el => {
         options[el.value] = true;
       });
-      createChart(options);
+      cb(options);
     });
     span.innerText = city;
 
