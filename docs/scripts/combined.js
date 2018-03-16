@@ -530,6 +530,7 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
 };
 
 SpreadsheetDataService.prototype.createColors = function(cities) {
+  cities.sort();
   for (let i = 0; i < cities.length; i++) {
     const city = cities[i];
     const color = randomColor({ luminosity: "light" });
