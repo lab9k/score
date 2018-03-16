@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "d3": "^4.13.0",
-    "google-spreadsheet": "^2.0.4"
+    "google-spreadsheet": "^2.0.4",
+    "randomcolor": "^0.5.3"
   }
 }
