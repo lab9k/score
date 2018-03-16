@@ -140,7 +140,7 @@ var createChart = function(options) {
       });
     }
     function colorCallback(options) {
-      var circle = g
+      g
         .selectAll("circle")
         .data(nodes)
         .style("fill", function(d) {
@@ -160,16 +160,19 @@ var createCheckboxes = function(dataService, cb) {
   }
   var cityColors = dataService.cityColors;
   for (const city in cityColors) {
-    console.log(city);
     const color = cityColors[city];
     var label = document.createElement("label");
     var input = document.createElement("input");
     var span = document.createElement("span");
+    var colorSpan = document.createElement("span");
+    colorSpan.style.backgroundColor = color;
+    colorSpan.setAttribute("class", "legend");
+    colorSpan.innerHTML = "&nbsp";
+
     input.setAttribute("type", "checkbox");
     input.setAttribute("value", city);
     input.setAttribute("id", city + "cbId");
     input.addEventListener("change", function(event) {
-      console.log("checkbox clicked: ", city);
       var options = Object.create(null);
       var checkedCityNodes = document.querySelectorAll("input:checked");
       checkedCityNodes.forEach(el => {
@@ -182,6 +185,7 @@ var createCheckboxes = function(dataService, cb) {
     list.appendChild(label);
     label.appendChild(input);
     label.appendChild(span);
+    label.appendChild(colorSpan);
   }
 };
 

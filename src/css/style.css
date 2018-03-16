@@ -50,3 +50,10 @@ html {
   flex-direction: column;
   justify-content: space-around;
 }
+.legend {
+  width: 12px;
+  height: 12px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: right;
+}
