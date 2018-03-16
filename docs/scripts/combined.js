@@ -37,7 +37,8 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
           description: descriptionValue,
           contact: contactValue,
           city: cityValue,
-          size: 256
+          size: 256,
+          leaf: true
         };
 
         var themeObj = parsed_json.children.find(el => {
@@ -63,7 +64,6 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
         }
       });
     }
-    console.log("Parsed JSON: ", parsed_json);
     cb(parsed_json);
   });
 };
@@ -74,7 +74,6 @@ var fetchJson = function(url, cb) {
     .then(status)
     .then(data => {
       data.json().then(d => {
-        console.log(d);
         cb(d);
       });
     })
@@ -156,6 +155,9 @@ var createChart = function() {
       .style("display", function(d) {
         return d.parent === root ? "inline" : "none";
       })
+      .attr("fill", function(d) {
+        return d.data.leaf ? "inherit" : "inherit";
+      })
       .text(function(d) {
         return d.data.name;
       });
@@ -206,7 +208,7 @@ var createChart = function() {
       var k = diameter / v[2];
       view = v;
       node.attr("transform", function(d) {
-        return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+        return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ") rotate("+15+")";
       });
       circle.attr("r", function(d) {
         return d.r * k;
@@ -226,14 +228,3 @@ window.onload = function() {
   resizeSVG();
   createChart();
 };
-
-// window.onresize = function() {
-//   console.log("resizing.");
-//   var svg_cont = document.getElementById("svg-cont");
-//   svg_cont.removeChild(document.getElementById("chart"));
-//   var newElem = document.createElement("svg");
-//   newElem.setAttribute("id", "chart");
-//   svg_cont.appendChild(newElem);
-//   resizeSVG();
-//   createChart();
-// };
