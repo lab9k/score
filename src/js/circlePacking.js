@@ -1,4 +1,4 @@
-var createChart = function() {
+var createChart = function(options) {
   var dataService = new SpreadsheetDataService();
   dataService.fetch(function(data) {
     var svg = d3.select("#chart"),
@@ -47,7 +47,7 @@ var createChart = function() {
           : "node node--root";
       })
       .style("fill", function(d) {
-        if (d.data.leaf) {
+        if (d.data.leaf && options && options[d.data.city]) {
           return dataService.cityColors[d.data.city];
         } else return d.children ? color(d.depth) : null;
       })
@@ -145,6 +145,9 @@ var createChart = function() {
 
 var createCheckboxes = function(dataService) {
   var list = document.getElementById("checkboxes");
+  if (list.firstChild) {
+    return;
+  }
   var cityColors = dataService.cityColors;
   for (const city in cityColors) {
     console.log(city);
@@ -154,7 +157,16 @@ var createCheckboxes = function(dataService) {
     var span = document.createElement("span");
     input.setAttribute("type", "checkbox");
     input.setAttribute("value", city);
-
+    input.setAttribute("id", city + "cbId");
+    input.addEventListener("change", function(event) {
+      console.log("checkbox clicked: ", city);
+      var options = Object.create(null);
+      var checkedCityNodes = document.querySelectorAll("input:checked");
+      checkedCityNodes.forEach(el => {
+        options[el.value] = true;
+      });
+      createChart(options);
+    });
     span.innerText = city;
 
     list.appendChild(label);
