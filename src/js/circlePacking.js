@@ -47,6 +47,17 @@ var createChart = function() {
           : "node node--root";
       })
       .style("fill", function(d) {
+        if (d.data.leaf) {
+          if (d.data.city == "Amsterdam"){
+            return "pink";
+          }
+          if (d.data.city == "Gent"){
+            return "blue";
+          }
+          if (d.data.city == "Gothenburg"){
+            return "lime";
+          }
+        }else
         return d.children ? color(d.depth) : null;
       })
       .on("click", function(d) {

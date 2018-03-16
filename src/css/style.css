@@ -39,3 +39,11 @@ html {
 * {
   background-color: hsl(195, 80%, 80%);
 }
+
+#cities{
+  float: left;
+  padding-left: 3%;
+}
+
+#svg-cont{
+}
