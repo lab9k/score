@@ -80,7 +80,6 @@ SpreadsheetDataService.prototype.createColors = function(cities) {
     const color = randomColor({ luminosity: "light" });
     this.cityColors[city] = color;
   }
-  console.log(JSON.stringify(this.cityColors));
 };
 
 var fetchJson = function(url, cb) {
