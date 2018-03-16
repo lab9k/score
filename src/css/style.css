@@ -1,3 +1,9 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
 .node {
   cursor: pointer;
 }
@@ -24,6 +30,7 @@
 }
 
 .svg-container {
+  max-height: 100vh;
   display: flex;
   justify-content: center;
   align-content: center;
