@@ -532,7 +532,7 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
 SpreadsheetDataService.prototype.createColors = function(cities) {
   for (let i = 0; i < cities.length; i++) {
     const city = cities[i];
-    const color = randomColor();
+    const color = randomColor({ luminosity: "light" });
     this.cityColors[city] = color;
   }
   console.log(JSON.stringify(this.cityColors));
