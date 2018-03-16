@@ -35,7 +35,8 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
           description: descriptionValue,
           contact: contactValue,
           city: cityValue,
-          size: 256
+          size: 256,
+          leaf: true
         };
 
         var themeObj = parsed_json.children.find(el => {
