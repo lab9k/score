@@ -40,7 +40,13 @@ html {
   background-color: hsl(195, 80%, 80%);
 }
 
-#cities{
+#cities {
   float: left;
   padding-left: 3%;
+}
+
+#checkboxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

@@ -48,9 +48,8 @@ var createChart = function() {
       })
       .style("fill", function(d) {
         if (d.data.leaf) {
-          return dataService.cityColors[d.data.city]
-        }else
-        return d.children ? color(d.depth) : null;
+          return dataService.cityColors[d.data.city];
+        } else return d.children ? color(d.depth) : null;
       })
       .on("click", function(d) {
         if (d.data.leaf) {
@@ -140,7 +139,28 @@ var createChart = function() {
         return d.r * k;
       });
     }
+    createCheckboxes(dataService);
   });
+};
+
+var createCheckboxes = function(dataService) {
+  var list = document.getElementById("checkboxes");
+  var cityColors = dataService.cityColors;
+  for (const city in cityColors) {
+    console.log(city);
+    const color = cityColors[city];
+    var label = document.createElement("label");
+    var input = document.createElement("input");
+    var span = document.createElement("span");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("value", city);
+
+    span.innerText = city;
+
+    list.appendChild(label);
+    label.appendChild(input);
+    label.appendChild(span);
+  }
 };
 
 var resizeSVG = function() {
