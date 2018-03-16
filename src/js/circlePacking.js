@@ -66,7 +66,7 @@ var createChart = function() {
         return d.parent === root ? "inline" : "none";
       })
       .attr("fill", function(d) {
-        return d.data.leaf ? "red" : "inherit";
+        return d.data.leaf ? "inherit" : "inherit";
       })
       .text(function(d) {
         return d.data.name;
@@ -118,7 +118,7 @@ var createChart = function() {
       var k = diameter / v[2];
       view = v;
       node.attr("transform", function(d) {
-        return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+        return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ") rotate("+15+")";
       });
       circle.attr("r", function(d) {
         return d.r * k;
