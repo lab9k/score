@@ -243,7 +243,6 @@ window.onload = function() {
 };
 
 var openUrl = function(url) {
-  console.log("CLICKED");
   var win = window.open(url, "_blank");
   win.focus();
 };
