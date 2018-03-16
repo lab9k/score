@@ -140,7 +140,12 @@ var createChart = function() {
         return d.children ? color(d.depth) : null;
       })
       .on("click", function(d) {
-        if (focus !== d) zoom(d), d3.event.stopPropagation();
+        if (d.data.leaf) {
+          openUrl(d.data.contact);
+        } else {
+          if (focus !== d) zoom(d);
+        }
+        d3.event.stopPropagation();
       });
 
     /*var text =*/ g
@@ -208,7 +213,15 @@ var createChart = function() {
       var k = diameter / v[2];
       view = v;
       node.attr("transform", function(d) {
-        return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ") rotate("+15+")";
+        return (
+          "translate(" +
+          (d.x - v[0]) * k +
+          "," +
+          (d.y - v[1]) * k +
+          ") rotate(" +
+          15 +
+          ")"
+        );
       });
       circle.attr("r", function(d) {
         return d.r * k;
@@ -227,4 +240,10 @@ var resizeSVG = function() {
 window.onload = function() {
   resizeSVG();
   createChart();
+};
+
+var openUrl = function(url) {
+  console.log("CLICKED");
+  var win = window.open(url, "_blank");
+  win.focus();
 };
