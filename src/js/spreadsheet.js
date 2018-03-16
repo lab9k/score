@@ -1,6 +1,7 @@
 function SpreadsheetDataService() {
   this.url =
     "https://spreadsheets.google.com/feeds/list/1adKrrgn-KxFe1mWHUXZEDvu23BIzHE2wLk2YfIQjzbM/o19znhx/public/values?alt=json";
+  this.cityColors = Object.create(null);
 }
 
 /**
@@ -16,6 +17,8 @@ function SpreadsheetDataService() {
  * @param {sheetDataCallback} cb - The callback that handles the data collected from the spreadsheet.
  */
 SpreadsheetDataService.prototype.fetch = function(cb) {
+  var self = this;
+  var cities = [];
   fetchJson(this.url, function(raw_data) {
     var parsed_json = Object.create({});
     if (raw_data.feed && raw_data.feed.entry) {
@@ -30,6 +33,9 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
         var contactValue = row["gsx$contact"]["$t"];
         var cityValue = row["gsx$city"]["$t"];
 
+        if (!cities.includes(cityValue)) {
+          cities.push(cityValue);
+        }
         var rowObj = {
           name: titleValue,
           description: descriptionValue,
@@ -62,8 +68,18 @@ SpreadsheetDataService.prototype.fetch = function(cb) {
         }
       });
     }
+    self.createColors(cities);
     cb(parsed_json);
   });
+};
+
+SpreadsheetDataService.prototype.createColors = function(cities) {
+  for (let i = 0; i < cities.length; i++) {
+    const city = cities[i];
+    const color = randomColor();
+    this.cityColors[city] = color;
+  }
+  console.log(JSON.stringify(this.cityColors));
 };
 
 var fetchJson = function(url, cb) {
