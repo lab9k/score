@@ -138,3 +138,8 @@ window.onload = function() {
   resizeSVG();
   createChart();
 };
+
+var openUrl = function(url) {
+  var win = window.open(url, "_blank");
+  win.focus();
+};
