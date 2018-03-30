@@ -1,4 +1,5 @@
-var createChart = function(options) {
+function circlePacking(options) {}
+circlePacking.prototype.createChart = function() {
   var id = "1adKrrgn-KxFe1mWHUXZEDvu23BIzHE2wLk2YfIQjzbM";
   var sheet_index = "2";
   var dataService = new SpreadsheetDataService(id, sheet_index);
@@ -33,10 +34,7 @@ var createChart = function(options) {
         });
         if (!themeObj) {
           themeObj = { name: themeValue, children: [], kind: "THEME" };
-          themeObj.children.push({
-            name: kwValue,
-            children: [rowObj]
-          });
+          themeObj.children.push({ name: kwValue, children: [rowObj] });
           parsed_json.children.push(themeObj);
         } else {
           var kwObj = themeObj.children.find(el => {
@@ -102,9 +100,7 @@ var createChart = function(options) {
             : "node node--root";
         })
         .style("fill", function(d) {
-          if (d.data.leaf && options && options[d.data.city]) {
-            return cityColors[d.data.city];
-          } else return d.children ? color(d.depth) : null;
+          return d.children ? color(d.depth) : null;
         })
         .on("click", function(d) {
           if (d.data.leaf) {
@@ -208,7 +204,6 @@ var createChart = function(options) {
     })
     .catch(console.error);
 };
-
 var createColors = function(cities) {
   cities.sort();
   var cityColors = Object.create(null);
@@ -254,19 +249,6 @@ var createCheckboxes = function(cityColors, cb) {
     label.appendChild(colorSpan);
   }
 };
-
-var resizeSVG = function() {
-  var height = window.innerHeight;
-  var svg = document.getElementById("chart");
-  svg.setAttribute("width", "" + height);
-  svg.setAttribute("height", "" + height);
-};
-
-window.onload = function() {
-  resizeSVG();
-  createChart();
-};
-
 var openUrl = function(url) {
   var win = window.open(url, "_blank");
   win.focus();
