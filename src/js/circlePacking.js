@@ -1,4 +1,4 @@
-function circlePacking(options) {}
+function circlePacking() {}
 circlePacking.prototype.createChart = function() {
   var id = "1adKrrgn-KxFe1mWHUXZEDvu23BIzHE2wLk2YfIQjzbM";
   var sheet_index = "2";
@@ -233,7 +233,7 @@ var createCheckboxes = function(cityColors, cb) {
     input.setAttribute("type", "checkbox");
     input.setAttribute("value", city);
     input.setAttribute("id", city + "cbId");
-    input.addEventListener("change", function(event) {
+    input.addEventListener("change", function() {
       var options = Object.create(null);
       var checkedCityNodes = document.querySelectorAll("input:checked");
       checkedCityNodes.forEach(el => {
